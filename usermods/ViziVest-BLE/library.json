@@ -2,8 +2,5 @@
   "name": "ViziVest-BLE",
   "build": {
     "libArchive": false
-  },
-  "dependencies": {
-    "h2zero/NimBLE-Arduino": "^2.5.1"
   }
 }
