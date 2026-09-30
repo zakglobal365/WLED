@@ -1,4 +1,4 @@
-name: Build ViziVest
+name: Build ViziVest 16.0.1
 
 on:
   workflow_dispatch:
@@ -8,10 +8,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout WLED 16.0.1
         uses: actions/checkout@v4
         with:
           ref: v16.0.1
+
+      - name: Checkout ViziVest usermod
+        uses: actions/checkout@v4
+        with:
+          path: vizivest-source
+          ref: main
+          sparse-checkout: |
+            usermods/ViziVest-BLE
+
+      - name: Install ViziVest usermod
+        run: |
+          cp -r vizivest-source/usermods/ViziVest-BLE usermods/ViziVest-BLE
+          ls -la usermods/ViziVest-BLE
 
       - name: Set up Python
         uses: actions/setup-python@v5
